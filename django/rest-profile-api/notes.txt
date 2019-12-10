@@ -1,0 +1,53 @@
+#create and activate .venv
+    # For windows
+    py -3 -m venv .venv
+    .venv\scripts\activate
+
+    # For macOS/Linux
+    python3 -m venv .venv
+    source .venv/bin/activate
+
+
+# Create Project requirements
+    1. Create requirement.txt file
+    2. list all required pacakges with version
+    3. run command: pip install -r requirements.txt 
+        to install those requirements to .venv
+
+
+# Create Project
+    command: django-admin.py startproject profiles_project .
+    command-desc: (script) (create project) (project name) (location)
+
+    command: python manage.py startapp profile_api
+
+# run application
+    command: python manage.py runserver 0.0.0.0:8000
+
+
+# Create Migration
+    command: python manage.py makemigrations profile_api
+    command: python manage.py migrate
+
+
+# Create SuperUser
+    command: python manage.py createsuperuser
+    default(email: monir@gmail.com, pass:monir)
+
+
+# make .sh files executable for deployment
+    command: chmod +x deploy/*.sh
+
+
+# deploy
+    1. ssh into ubuntu
+    2. run below command
+        command: curl -sL {github setup.sh row url} | sudo bash -
+    3. add hostname to setting.py allowed host array
+    4. navigate to project folder, then run following command
+        command: sudo sh ./deploy/update.sh
+    5. That should done
+    6. create superuser
+        command: sudo env/bin/python manage.py createsuperuser
+    7. input email, name, password
+
